@@ -6,12 +6,15 @@ const router = express.Router();
 // create service
 router.post("/create-service" , async (req, res) => {
     try {
-      const { name , description } = req.body;
+      const { name , description, icon } = req.body;
       if (!name) {
         return res.status(401).send({ message: "Name is required" });
       }
       if (!description) {
         return res.status(401).send({ message: "description service is required" });
+      }
+      if (!icon) {
+        return res.status(401).send({ message: "icon service is required" });
       }
       const existingservice = await servicesModel.findOne({ name });
       if (existingservice) {
@@ -22,7 +25,8 @@ router.post("/create-service" , async (req, res) => {
       }
       const service = await new servicesModel({
         name,
-        description
+        description,
+          icon
       }).save();
       res.status(201).send({
         success: true,
@@ -42,11 +46,11 @@ router.post("/create-service" , async (req, res) => {
   //update service
 router.put("/update-service/:sid", async (req, res) => {
     try {
-      const { name,description } = req.body;
+      const { name,description,icon } = req.body;
       const { sid } = req.params;
       const service = await servicesModel.findByIdAndUpdate(
         sid,
-        { name, description },
+        { name, description,icon },
         { new: true }
       );
       await service.save();
