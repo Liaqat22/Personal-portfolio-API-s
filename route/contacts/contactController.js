@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/register", async (req, res) => {
     try {
-      const { name, company, description } = req.body;
+      const { name, company, description,email,interview } = req.body;
       //validations
       if (!name) {
         return res.send({ error: "Name is Required" });
