@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/register", async (req, res) => {
     try {
-      const { name, company, message } = req.body;
+      const { name, company, description } = req.body;
       //validations
       if (!name) {
         return res.send({ error: "Name is Required" });
@@ -14,7 +14,7 @@ router.post("/register", async (req, res) => {
       if (!company) {
         return res.send({ message: "company is Required" });
       }
-      if (!message) {
+      if (!description) {
         return res.send({ message: "message is Required" });
       }
     
@@ -25,7 +25,7 @@ router.post("/register", async (req, res) => {
         email,
         company,
         interview ,
-       message
+       description
       }).save();
   
       res.status(201).send({
