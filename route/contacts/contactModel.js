@@ -10,7 +10,6 @@ const contactSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: true,
     },
     company: {
       type: String,
@@ -18,7 +17,6 @@ const contactSchema = new mongoose.Schema(
     },
     interview: {
       type: String,
-      required: true,
     },
     description: {
       type: String,
